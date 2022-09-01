@@ -214,7 +214,7 @@ static std::string get_firmware_version(IKsControl* ksControl)
 
 static bool get_autozoom_available(IKsControl* ksControl)
 {
-    auto xu = XU_GENIOUS_FRAMING_AVAILABLE;
+    auto xu = XU_AUTOZOOM_AVAILABLE;
     auto available = get_xu_control(ksControl, xu);
     return (bool)available[0];
 }
@@ -280,7 +280,7 @@ int main()
     }
     auto software_version = get_firmware_version(huddly_ks_control);
 
-    auto az_avail = get_autozoom_available(huddly_ks_control);
+    auto az_available = get_autozoom_available(huddly_ks_control);
     if(!az_available) {
         std::cout << "Genious Framing features unavailable. " << std::endl;
         return -2;
