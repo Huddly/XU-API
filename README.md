@@ -32,4 +32,4 @@ Huddly IQ currently exposes the following features over UVC XU:
 
 Notes:
 * If Genious Framing is Off, setting Autozoom Mode will be retained but has no effect until Genious Framing is turned on again.
-* Property 0x4:0xa and 0x6:0x2 both control the same property, Genious Framing control, but from two different GUIDs.
+* Property 0x4:0xa and 0x6:0x2 both control the same property, enabling and disabling Genious Framing, but from two different GUIDs.
