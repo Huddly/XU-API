@@ -28,7 +28,7 @@ Property 0x4:0xa and 0x6:0x2 both control the same property, Genious Framing con
 | Autozoom Available     | f6acc829-acdb-e511-8424-f39068f75511 |      0x4 | 0x9         | 1              | GET       | 0x0 Genius Framing Unavailable <br>0x1 Genius Framing Available |
 | Autozoom (GF) control  | f6acc829-acdb-e511-8424-f39068f75511 |      0x4 | 0xa         | 1              | GET/SET   | 0x0 Genius Framing Off <br>0x1 Genius Framing On |
 | Autozoom Mode          | f6acc829-acdb-e511-8424-f39068f75511 |      0x4 | 0xb         | 1              | GET/SET   | 0x0 Normal Framing<br>0x1 Gallery View<br>0x2 Gallery Duplicate (for testing) |
-| Software version | f6acc829-acdb-e511-8424-f39068f75511| 0x4      | 0x19        | 8                 | GET       | Semantic version = [Byte 3].[Byte 2].[Byte 1]<br>Note: Byte 0, 4,5,6,7 are proprietary | 
+| Software version | f6acc829-acdb-e511-8424-f39068f75511| 0x4      | 0x13        | 8                 | GET       | Semantic version = [Byte 3].[Byte 2].[Byte 1]<br>Note: Byte 0, 4,5,6,7 are proprietary | 
 | Genius framing control | a8bd5df2-1a98-474e-8dd0-d92672d194fa | 0x6 | 0x2 | 1 | GET/SET | 0x0 Genius Framing Off <br>0x1 Genius Framing On |
 | People count control | a8bd5df2-1a98-474e-8dd0-d92672d194fa | 0x6 | 0x7 | 1 | GET/SET | 0x0 People count Off<br>0x1 People count always on<br>0x2 People count on when streaming |
 | People count read	| a8bd5df2-1a98-474e-8dd0-d92672d194fa | 0x6 | 0x8 | 1 | GET | People count reading 0-255 |
