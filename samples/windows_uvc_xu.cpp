@@ -38,6 +38,14 @@ public:
 #define XU_GENIUS_FRAMING_CONTROL XU_CONTROL(PROPSETID_HUD_XU_V2, NODEID_HUD_XU_V2, 2, 1);
 #define XU_PEOPLE_COUNT_CONTROL XU_CONTROL(PROPSETID_HUD_XU_V2, NODEID_HUD_XU_V2, 7, 1);
 #define XU_PEOPLE_COUNT_READ XU_CONTROL(PROPSETID_HUD_XU_V2, NODEID_HUD_XU_V2, 8, 1);
+#define XU_AUTOZOOM_AVAILABLE    XU_CONTROL(PROPSETID_HUD_XU_V1, NODEID_HUD_XU_V1, 0x9, 1);
+#define XU_AUTOZOOM_CONTROL      XU_CONTROL(PROPSETID_HUD_XU_V1, NODEID_HUD_XU_V1, 0xa, 1);
+#define XU_AUTOZOOM_MODE_CONTROL XU_CONTROL(PROPSETID_HUD_XU_V1, NODEID_HUD_XU_V1, 0xb, 1);
+
+
+#define AZ_MODE_NORMAL       0
+#define AZ_MODE_GALLERYVIEW  1
+#define AZ_MODE_GV_DUPLICATE 2 // this mode is only for testing and will duplicate a single person on both frames
 
 class UVCException : public std::exception {
 public:
@@ -204,6 +212,46 @@ static std::string get_firmware_version(IKsControl* ksControl)
     return version_string.str();
 }
 
+static bool get_autozoom_available(IKsControl* ksControl)
+{
+    auto xu = XU_GENIOUS_FRAMING_AVAILABLE;
+    auto available = get_xu_control(ksControl, xu);
+    return (bool)available[0];
+}
+
+static void set_autozoom(IKsControl* ksControl, bool on)
+{
+    auto xu = XU_AUTOZOOM_CONTROL;
+    uint8_t mode = 1;
+    if (!on)
+        mode = 0;
+    std::vector<uint8_t> m(1, mode);
+
+    set_xu_control(ksControl, xu, m);
+}
+
+static bool get_autozoom(IKsControl* ksControl)
+{
+    auto xu = XU_AUTOZOOM_CONTROL;
+    auto people_count = get_xu_control(ksControl, xu);
+    return (bool)people_count[0];
+}
+
+static void set_autozoom_mode(IKsControl* ksControl, uint8_t mode)
+{
+    auto xu = XU_AUTOZOOM_MODE_CONTROL;
+    std::vector<uint8_t> m(1, mode);
+
+    set_xu_control(ksControl, xu, m);
+}
+
+static int get_autozoom_mode(IKsControl* ksControl)
+{
+    auto xu = XU_AUTOZOOM_MODE_CONTROL;
+    auto az_mode = get_xu_control(ksControl, xu);
+    return (int)az_mode[0];
+}
+
 static void set_people_count_mode(IKsControl* ksControl, uint8_t mode)
 {
     auto xu = XU_PEOPLE_COUNT_CONTROL;
@@ -231,6 +279,27 @@ int main()
         return -1;
     }
     auto software_version = get_firmware_version(huddly_ks_control);
+
+    auto az_avail = get_autozoom_available(huddly_ks_control);
+    if(!az_available) {
+        std::cout << "Genious Framing features unavailable. " << std::endl;
+        return -2;
+    }
+
+    auto az_enabled = get_autozoom(huddly_ks_control);
+    if (!az_enabled) {
+        std::cout << "Enabling Genious Framing... " << std::endl;
+        set_autozoom(huddly_ks_control, true);
+    }
+
+    auto mode = get_autozoom_mode(huddly_ks_control);
+    if (mode == AZ_MODE_NORMAL) {
+        std::cout << "Genious Framing in Normal mode, changing to Gallery View. " << std::endl;
+        set_autozoom_mode(huddly_ks_control, AZ_MODE_GALLERYVIEW);
+    } else if (mode == AZ_MODE_GALLERYVIEW) {
+        std::cout << "Genious Framing in Gallery View mode, changing to Normal. " << std::endl;
+        set_autozoom_mode(huddly_ks_control, AZ_MODE_NORMAL);
+    }
 
     set_people_count_mode(huddly_ks_control, 1);
     Sleep(1000); // Give the camera some time to do its first detection
