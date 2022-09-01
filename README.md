@@ -11,17 +11,13 @@ UVC Extension Units is a way for UVC compliant cameras to expose custom features
 
 ## Huddly IQ features available over UVC XU
 
-Huddly IQ currently exposes the following features over UVC XU
+Huddly IQ currently exposes the following features over UVC XU:
 
-Reading Genious Framing availability
-Toggling between Gallery View or normal framing
-Reading the camera firmware version
-Reading and controlling the people counting feature
-Controlling Genius Framing feature (AutoZoom) 
-
-Note that if Genious Framing is Off, setting Autozoom Mode will be retained but has no effect until Genious Framing is turned on again.
-
-Property 0x4:0xa and 0x6:0x2 both control the same property, Genious Framing control, but from two different GUIDs.
+* Reading Genious Framing availability
+* Toggling between Gallery View or normal framing
+* Reading the camera firmware version
+* Reading and controlling the people counting feature
+* Controlling Genius Framing feature (AutoZoom) 
 
 | Feature                | UVC Extension Unit GUID              | Unit ID  | Property ID | Length (bytes) | Operation | Value |
 | ---------------------- | -----------------------------------  | -------- | ----------- | -------------- | --------- | ----- |
@@ -33,3 +29,7 @@ Property 0x4:0xa and 0x6:0x2 both control the same property, Genious Framing con
 | People count control   | a8bd5df2-1a98-474e-8dd0-d92672d194fa |      0x6 | 0x7         | 1              | GET/SET   | 0x0 People count Off<br>0x1 People count always on<br>0x2 People count on when streaming |
 | People count read      | a8bd5df2-1a98-474e-8dd0-d92672d194fa |      0x6 | 0x8         | 1              | GET       | People count reading 0-255 |
 
+
+Notes:
+* If Genious Framing is Off, setting Autozoom Mode will be retained but has no effect until Genious Framing is turned on again.
+* Property 0x4:0xa and 0x6:0x2 both control the same property, Genious Framing control, but from two different GUIDs.
