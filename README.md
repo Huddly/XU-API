@@ -6,6 +6,8 @@ This document describes details about Huddly IQs API features available over UVC
 
 **This API is introduced with Huddly IQ firmware version 1.4.0 and will not work with any earlier versions**
 
+The Genious Framing controls were added to the GUID `f6acc829-..` in firmware 1.6.5.
+
 ## UVC Extension Units
 UVC Extension Units is a way for UVC compliant cameras to expose custom features that are not already present in the UVC standard. These features are available in user mode through the operating systems native UVC drivers and do not require exclusive access to the UVC camera. The last point here is a significant difference from other proprietary USB communications methods. A major drawback with UVC Extension Units is that the transport does not allow high speed data transfers and is therefore not suitable for transferring larger amounts of data, such as binaries and images.
 
@@ -22,7 +24,7 @@ Huddly IQ currently exposes the following features over UVC XU:
 | Feature                | UVC Extension Unit GUID              | Unit ID  | Property ID | Length (bytes) | Operation | Value |
 | ---------------------- | -----------------------------------  | -------- | ----------- | -------------- | --------- | ----- |
 | Autozoom Available     | f6acc829-acdb-e511-8424-f39068f75511 |      0x4 | 0x9         | 1              | GET       | 0x0 Genius Framing Unavailable <br>0x1 Genius Framing Available |
-| Autozoom (GF) control  | f6acc829-acdb-e511-8424-f39068f75511 |      0x4 | 0xa         | 1              | GET/SET   | 0x0 Genius Framing Off <br>0x1 Genius Framing On |
+| Autozoom control       | f6acc829-acdb-e511-8424-f39068f75511 |      0x4 | 0xa         | 1              | GET/SET   | 0x0 Genius Framing Off <br>0x1 Genius Framing On |
 | Autozoom Mode          | f6acc829-acdb-e511-8424-f39068f75511 |      0x4 | 0xb         | 1              | GET/SET   | 0x0 Normal Framing<br>0x1 Gallery View<br>0x2 Gallery Duplicate (for testing) |
 | Software version       | f6acc829-acdb-e511-8424-f39068f75511 |      0x4 | 0x13        | 8              | GET       | Semantic version = [Byte 3].[Byte 2].[Byte 1]<br>Note: Byte 0, 4,5,6,7 are proprietary | 
 | Genius framing control | a8bd5df2-1a98-474e-8dd0-d92672d194fa |      0x6 | 0x2         | 1              | GET/SET   | 0x0 Genius Framing Off <br>0x1 Genius Framing On |
