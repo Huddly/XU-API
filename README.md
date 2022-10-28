@@ -6,7 +6,7 @@ This document describes details about Huddly IQs API features available over UVC
 
 **This API is introduced with Huddly IQ firmware version 1.4.0 and will not work with any earlier versions**
 
-The Genious Framing controls were added to the GUID `f6acc829-..` in firmware 1.6.5.
+The Genius Framing controls were added to the GUID `f6acc829-..` in firmware 1.6.5.
 
 ## UVC Extension Units
 UVC Extension Units is a way for UVC compliant cameras to expose custom features that are not already present in the UVC standard. These features are available in user mode through the operating systems native UVC drivers and do not require exclusive access to the UVC camera. The last point here is a significant difference from other proprietary USB communications methods. A major drawback with UVC Extension Units is that the transport does not allow high speed data transfers and is therefore not suitable for transferring larger amounts of data, such as binaries and images.
@@ -15,7 +15,7 @@ UVC Extension Units is a way for UVC compliant cameras to expose custom features
 
 Huddly IQ currently exposes the following features over UVC XU:
 
-* Reading Genious Framing availability
+* Reading Genius Framing availability
 * Toggling between Gallery View or normal framing
 * Reading the camera firmware version
 * Reading and controlling the people counting feature
@@ -33,5 +33,5 @@ Huddly IQ currently exposes the following features over UVC XU:
 
 
 Notes:
-* If Genious Framing is Off, setting Autozoom Mode will be retained but has no effect until Genious Framing is turned on again.
-* Property 0x4:0xa and 0x6:0x2 both control the same property, enabling and disabling Genious Framing, but from two different GUIDs.
+* If Genius Framing is Off, setting Autozoom Mode will be retained but has no effect until Genius Framing is turned on again.
+* Property 0x4:0xa and 0x6:0x2 both control the same property, enabling and disabling Genius Framing, but from two different GUIDs.
