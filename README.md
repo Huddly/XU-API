@@ -33,5 +33,6 @@ Huddly IQ currently exposes the following features over UVC XU:
 
 
 Notes:
+* Do not rely on the unit ID to find an extension unit. Use the GUID to find an extension unit that satisfies a certain specification. The Unit IDs mentioned in the table above coincides with what is used on boxfish, but no one should ever rely on this being the case Do not ever communicate to a customer that an extension unit is available on a specific unit ID.
 * If Genius Framing is Off, setting Autozoom Mode will be retained but has no effect until Genius Framing is turned on again.
 * Property 0x4:0xa and 0x6:0x2 both control the same property, enabling and disabling Genius Framing, but from two different GUIDs.
